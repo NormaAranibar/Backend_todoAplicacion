@@ -16,7 +16,7 @@ const updateTodoController = async (req, res) => {
     todo.body = content;
     await todo.save(); // Persists changes to the database
 
-    return res.status(200).json({ message: "Todo updated successfully", updatedTodo: todo });
+    return res.status(200).json( todo );
   } catch (error) {
     console.error("Error updating todo:", error);
     return res.status(500).json({ message: "Internal server error" });
