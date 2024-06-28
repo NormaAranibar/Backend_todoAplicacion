@@ -5,10 +5,10 @@ const deleteTodoController = async (req, res) => {
 
   try {
     // // Check if todo exists
-    // const todo = await Todo.findByPk(idTodo);
-    // if (!todo) {
-    //   return res.status(404).json({ message: "Todo not found" });
-    // }
+    const todo = await Todo.findByPk(idTodo);
+    if (!todo) {
+      return res.status(404).json({ message: "Todo not found" });
+    }
 
     await Todo.destroy({
       where: {
@@ -16,7 +16,7 @@ const deleteTodoController = async (req, res) => {
       },
     });
 
-    return res.status(200).json({ message: "Todo deleted successfully" });
+    return res.status(200).json({ message: "Todo deleted successfully",id:todo.id });
   } catch (error) {
     console.error("Error deletting todo:", error);
     return res.status(500).json({ message: "Internal server error" });
