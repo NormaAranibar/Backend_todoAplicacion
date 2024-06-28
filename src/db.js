@@ -3,30 +3,30 @@ const { Sequelize } = require("sequelize");
 const fs = require("fs");
 const path = require("path");
 
-/*const { P_DB_USER, P_DB_PASSWORD, P_DB_HOST, P_DB_NAME } = process.env;
+const { P_DB_USER, P_DB_PASSWORD, P_DB_HOST, P_DB_NAME } = process.env;
 
 const sequelize = new Sequelize(
-`postgres://${P_DB_USER}:${P_DB_PASSWORD}@${P_DB_HOST}/${P_DB_NAME}`,
-{ 
-logging: false,
-native: false,
-}
-);*/
+  `postgres://${P_DB_USER}:${P_DB_PASSWORD}@${P_DB_HOST}/${P_DB_NAME}`,
+  {
+    logging: false,
+    native: false,
+  }
+);
 
- const { DB_USUARIO, DB_PASSWORD, DB_HOST, DB_PORT, DB_SERVICE } = process.env;
+// const { DB_USUARIO, DB_PASSWORD, DB_HOST, DB_PORT, DB_SERVICE } = process.env;
 
- const sequelize = new Sequelize({
-   username: DB_USUARIO,
-   password: DB_PASSWORD,
-   host: DB_HOST,
-   port: DB_PORT,
-   dialect: "oracle",
-   dialectOptions: {
-     connectString: `${DB_HOST}:${DB_PORT}/${DB_SERVICE}`,
-  },
-   logging: false,
-   native: false,
- });
+// const sequelize = new Sequelize({
+//   username: DB_USUARIO,
+//   password: DB_PASSWORD,
+//   host: DB_HOST,
+//   port: DB_PORT,
+//   dialect: "oracle",
+//   dialectOptions: {
+//     connectString: `${DB_HOST}:${DB_PORT}/${DB_SERVICE}`,
+//   },
+//   logging: false,
+//   native: false,
+// });
 
 const basename = path.basename(__filename);
 
@@ -59,7 +59,7 @@ const { User, Todo } = sequelize.models;
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
 User.hasMany(Todo);
-Todo.belongsTo(User)
+Todo.belongsTo(User);
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
